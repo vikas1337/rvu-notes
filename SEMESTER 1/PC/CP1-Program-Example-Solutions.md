@@ -56,7 +56,7 @@ int main() {
     scanf("%f", &f);
 
     printf("Enter a character: ");
-    scanf(" %c", &c);
+    scanf("%c", &c);
 
     printf("Enter a double: ");
     scanf("%lf", &d);
