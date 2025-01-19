@@ -994,3 +994,102 @@ After Deletion:
 1. **2D Arrays:** Use nested loops to traverse and manipulate them efficiently.
 2. **Insertion:** Validate the position before inserting to avoid overwriting unintended data.
 3. **Deletion:** Replace the element with a placeholder (e.g., 0) to mark it as removed.
+
+
+
+# Insertion and Deletion in 1D Arrays in C
+
+This document explains how to perform insertion and deletion operations in 1D arrays with examples.
+
+---
+
+## **1. Insertion in a 1D Array**
+Insertion involves adding a new element at a specified position in the array. After insertion, the subsequent elements need to be shifted to the right to make space for the new element.
+
+### **Example: Inserting an Element**
+```c
+#include <stdio.h>
+
+int main() {
+    int arr[10] = {1, 2, 3, 4, 5}; // Initial array with 5 elements
+    int size = 5; // Current size of the array
+    int position = 2; // Position to insert the new element (0-based index)
+    int newValue = 99; // New value to be inserted
+
+    printf("Before Insertion: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    // Shift elements to the right
+    for (int i = size; i > position; i--) {
+        arr[i] = arr[i - 1];
+    }
+
+    // Insert the new element
+    arr[position] = newValue;
+    size++; // Increase the size of the array
+
+    printf("\nAfter Insertion: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    return 0;
+}
+```
+**Output:**
+```
+Before Insertion: 1 2 3 4 5 
+After Insertion: 1 2 99 3 4 5 
+```
+
+---
+
+## **2. Deletion in a 1D Array**
+Deletion involves removing an element at a specified position. After deletion, the subsequent elements need to be shifted to the left to fill the gap.
+
+### **Example: Deleting an Element**
+```c
+#include <stdio.h>
+
+int main() {
+    int arr[10] = {1, 2, 3, 4, 5}; // Initial array with 5 elements
+    int size = 5; // Current size of the array
+    int position = 2; // Position to delete the element (0-based index)
+
+    printf("Before Deletion: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    // Shift elements to the left
+    for (int i = position; i < size - 1; i++) {
+        arr[i] = arr[i + 1];
+    }
+
+    size--; // Decrease the size of the array
+
+    printf("\nAfter Deletion: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    return 0;
+}
+```
+**Output:**
+```
+Before Deletion: 1 2 3 4 5 
+After Deletion: 1 2 4 5 
+```
+
+---
+
+### **Key Points to Remember**
+1. Ensure the position is valid before performing insertion or deletion to avoid accessing out-of-bounds memory.
+2. For **insertion**, shift elements to the right before adding the new value.
+3. For **deletion**, shift elements to the left after removing the value.
+4. Adjust the array size accordingly after each operation.
+
+****
