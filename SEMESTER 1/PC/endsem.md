@@ -581,3 +581,242 @@ Appending a new line to the file.
 
 ---
 
+
+
+# Arrays, Loops, Structures, and Unions in C
+
+This document explains the fundamental concepts of arrays, loops, structures, and unions in C, with examples and detailed comments.
+
+---
+
+## **1. Arrays in C**
+An array is a collection of elements of the same data type stored in contiguous memory locations. Arrays allow efficient storage and manipulation of multiple data values.
+
+### **Declaration and Initialization**
+```c
+int arr[5] = {1, 2, 3, 4, 5};  // Declares an array of size 5 and initializes it
+```
+
+### **Example: Traversing an Array**
+```c
+#include <stdio.h>
+
+int main() {
+    int arr[5] = {1, 2, 3, 4, 5};
+
+    // Traverse the array using a loop
+    printf("Array elements: ");
+    for (int i = 0; i < 5; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    return 0;
+}
+```
+**Output:**
+```
+Array elements: 1 2 3 4 5
+```
+
+---
+
+## **2. Loops in C**
+Loops are used to execute a block of code repeatedly as long as a specified condition is true.
+
+### **Types of Loops**
+1. **For Loop:**
+   ```c
+   for (initialization; condition; increment/decrement) {
+       // Code to execute
+   }
+   ```
+
+2. **While Loop:**
+   ```c
+   while (condition) {
+       // Code to execute
+   }
+   ```
+
+3. **Do-While Loop:** Executes the block at least once.
+   ```c
+   do {
+       // Code to execute
+   } while (condition);
+   ```
+
+### **Example: Sum of First N Numbers Using Loops**
+```c
+#include <stdio.h>
+
+int main() {
+    int n = 5, sum = 0;
+
+    // Using a for loop to calculate the sum
+    for (int i = 1; i <= n; i++) {
+        sum += i;  // Add i to the sum
+    }
+
+    printf("Sum of first %d numbers is: %d\n", n, sum);
+
+    return 0;
+}
+```
+**Output:**
+```
+Sum of first 5 numbers is: 15
+```
+
+---
+
+## **3. Structures in C**
+A structure is a user-defined data type that groups related variables under one name.
+
+### **Defining and Using a Structure**
+```c
+struct Student {
+    char name[50];
+    int age;
+    float marks;
+};
+```
+
+### **Example: Storing and Displaying Student Data**
+```c
+#include <stdio.h>
+
+struct Student {
+    char name[50];
+    int age;
+    float marks;
+};
+
+int main() {
+    struct Student s1 = {"Alice", 20, 85.5}; // Initialize a structure
+
+    // Access structure members
+    printf("Name: %s\n", s1.name);
+    printf("Age: %d\n", s1.age);
+    printf("Marks: %.2f\n", s1.marks);
+
+    return 0;
+}
+```
+**Output:**
+```
+Name: Alice
+Age: 20
+Marks: 85.50
+```
+
+---
+
+## **4. Unions in C**
+A union is a user-defined data type where all members share the same memory location. It is memory-efficient but only one member can be used at a time.
+
+### **Defining and Using a Union**
+```c
+union Data {
+    int i;
+    float f;
+    char str[20];
+};
+```
+
+### **Example: Demonstrating a Union**
+```c
+#include <stdio.h>
+
+union Data {
+    int i;
+    float f;
+    char str[20];
+};
+
+int main() {
+    union Data d;
+
+    // Assign values to the union
+    d.i = 10;
+    printf("Integer: %d\n", d.i);
+
+    d.f = 20.5;
+    printf("Float: %.2f\n", d.f);
+
+    sprintf(d.str, "Hello");
+    printf("String: %s\n", d.str);
+
+    return 0;
+}
+```
+**Output (Note Memory Overlap):**
+```
+Integer: 10
+Float: 20.50
+String: Hello
+```
+
+---
+
+## **5. Arrays and Structures**
+Combining arrays and structures allows efficient handling of related data for multiple entities.
+
+### **Example: Storing Data of Multiple Students**
+```c
+#include <stdio.h>
+
+struct Student {
+    char name[50];
+    int age;
+    float marks;
+};
+
+int main() {
+    struct Student students[2]; // Array of structures
+
+    // Input data for students
+    for (int i = 0; i < 2; i++) {
+        printf("Enter details for student %d:\n", i + 1);
+        printf("Name: ");
+        scanf("%s", students[i].name);
+        printf("Age: ");
+        scanf("%d", &students[i].age);
+        printf("Marks: ");
+        scanf("%f", &students[i].marks);
+    }
+
+    // Display data of students
+    printf("\nStudent Details:\n");
+    for (int i = 0; i < 2; i++) {
+        printf("Name: %s, Age: %d, Marks: %.2f\n", students[i].name, students[i].age, students[i].marks);
+    }
+
+    return 0;
+}
+```
+**Output (Sample):**
+```
+Enter details for student 1:
+Name: Alice
+Age: 20
+Marks: 85.5
+
+Enter details for student 2:
+Name: Bob
+Age: 22
+Marks: 90.0
+
+Student Details:
+Name: Alice, Age: 20, Marks: 85.50
+Name: Bob, Age: 22, Marks: 90.00
+```
+
+---
+
+### **Key Points to Remember**
+1. **Arrays:** Store elements of the same type; use loops for traversal.
+2. **Loops:** Control repetitive tasks efficiently.
+3. **Structures:** Group related variables under one name; can store data of different types.
+4. **Unions:** Share memory among members for efficiency; only one member is usable at a time.
+5. **Arrays with Structures:** Handle multiple entities of structured data efficiently.
+
